@@ -26,7 +26,7 @@ notebook/
 └── notebook.ipynb
 ├──op1.png
 ├──op2.png
-├──requirement.txt
+├──requirements.txt
 
 ```
 
@@ -97,7 +97,7 @@ The deployed model includes preprocessing and inference in a single pipeline.
 
 ## How to Run
 
-pip install -r requirement.txt
+pip install -r requirements.txt
 cd app
 python app.py
 
