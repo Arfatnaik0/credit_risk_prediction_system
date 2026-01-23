@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Credit Risk Prediction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            max-width: 650px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e1e8ed;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+        }
+
+        input:hover, select:hover {
+            border-color: #a0aec0;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5568' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        button {
+            padding: 15px;
+            width: 100%;
+            background: #2d3748;
+            color: white;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #1a202c;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            font-size: 18px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .approve { 
+            background: #f0fdf4;
+            color: #166534;
+            border: 2px solid #86efac;
+        }
+
+        .reject { 
+            background: #fef2f2;
+            color: #991b1b;
+            border: 2px solid #fca5a5;
+        }
+
+        .result p {
+            margin: 8px 0;
+        }
+
+        .result strong {
+            font-weight: 600;
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Credit Risk Prediction</h2>
+
+    <form method="POST" action="/predict">
+        <div class="grid">
+            <div class="form-group">
+                <label>Annual Income</label>
+                <input type="number" name="annual_income" placeholder="e.g., 50000" required>
+            </div>
+
+            <div class="form-group">
+                <label>Debt-to-Income Ratio</label>
+                <input type="number" step="0.01" name="debt_to_income" placeholder="e.g., 15.35" required>
+            </div>
+
+            <div class="form-group">
+                <label>Employment Length (years)</label>
+                <input type="number" name="emp_length" placeholder="e.g., 5" required>
+            </div>
+
+            <div class="form-group">
+                <label>Credit History (years)</label>
+                <input type="number" name="credit_history_years" placeholder="e.g., 10" required>
+            </div>
+
+            <div class="form-group">
+                <label>Loan Amount</label>
+                <input type="number" name="loan_amount" placeholder="e.g., 15000" required>
+            </div>
+
+            <div class="form-group">
+                <label>Loan Term (months)</label>
+                <input type="number" name="term" placeholder="e.g., 36" required>
+            </div>
+
+            <div class="form-group">
+                <label>Interest Rate (%)</label>
+                <input type="number" step="0.01" name="interest_rate" placeholder="e.g., 12.5" required>
+            </div>
+
+            <div class="form-group">
+                <label>Monthly Installment</label>
+                <input type="number" step="0.01" name="installment" placeholder="e.g., 500" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Home Ownership</label>
+            <select name="homeownership" required>
+                <option value="">-- Select --</option>
+                <option value="RENT">Rent</option>
+                <option value="OWN">Own</option>
+                <option value="MORTGAGE">Mortgage</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Income Verification</label>
+            <select name="verified_income" required>
+                <option value="">-- Select --</option>
+                <option value="Verified">Verified</option>
+                <option value="Not Verified">Not Verified</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Loan Purpose</label>
+            <select name="loan_purpose" required>
+                <option value="">-- Select --</option>
+                <option value="credit_card">Credit Card</option>
+                <option value="debt_consolidation">Debt Consolidation</option>
+                <option value="home_improvement">Home Improvement</option>
+                <option value="personal">Personal</option>
+            </select>
+        </div>
+
+        <button type="submit">Predict Risk</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result {{ 'reject' if prediction == 'REJECT' else 'approve' }}">
+            <p><strong>Decision:</strong> {{ prediction }}</p>
+            <p><strong>Default Probability:</strong> {{ probability }}%</p>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
