@@ -1,8 +1,5 @@
 # Credit Risk Prediction System
 
-![alt text](op1.png)
-![alt text](op2.png)
-
 ## Overview
 This project implements an end-to-end **credit risk prediction system** that estimates the probability of loan default and makes approval or rejection decisions using **cost-sensitive thresholding**.  
 The emphasis is on business-aligned decision-making rather than raw accuracy.
@@ -10,6 +7,9 @@ The emphasis is on business-aligned decision-making rather than raw accuracy.
 The project covers data preprocessing, leakage prevention, model training, evaluation, and deployment using Flask.
 
 ---
+
+![alt text](op1.png)
+![alt text](op2.png)
 
 ## Project Structure
 
