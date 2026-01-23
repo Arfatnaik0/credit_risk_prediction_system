@@ -24,6 +24,9 @@ Dataset/
 └── loans_full_schema.csv
 notebook/
 └── notebook.ipynb
+├──op1.png
+├──op2.png
+├──requirement.txt
 
 ```
 
@@ -94,7 +97,7 @@ The deployed model includes preprocessing and inference in a single pipeline.
 
 ## How to Run
 
-pip install flask pandas numpy scikit-learn joblib
+pip install -r requirement.txt
 cd app
 python app.py
 
