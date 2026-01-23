@@ -8,6 +8,17 @@ The project covers data preprocessing, leakage prevention, model training, evalu
 
 ---
 
+## Live Demo
+The application is deployed and accessible here:
+
+**https://credit-risk-prediction-system-b3xb.onrender.com/**
+
+The web app allows users to input loan application details and returns:
+- Probability of default
+- Final decision (APPROVE / REJECT) based on a cost-optimized threshold
+
+---
+
 ![alt text](op1.png)
 ![alt text](op2.png)
 
