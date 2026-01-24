@@ -24,7 +24,7 @@ The web app allows users to input loan application details and returns:
 
 ---
 
-## project flow
+## Project Flow
 
 ![alt text](flow.png)
 
