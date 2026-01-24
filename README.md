@@ -11,7 +11,7 @@ The project covers data preprocessing, leakage prevention, model training, evalu
 ## Live Demo
 The application is deployed and accessible here:
 
-**https://credit-risk-prediction-system-b3xb.onrender.com/**
+**https://credit-risk-prediction-system.vercel.app/**
 
 The web app allows users to input loan application details and returns:
 - Probability of default
