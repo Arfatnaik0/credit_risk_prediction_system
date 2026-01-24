@@ -22,6 +22,14 @@ The web app allows users to input loan application details and returns:
 ![alt text](op1.png)
 ![alt text](op2.png)
 
+---
+
+## project flow
+
+![alt text](flow.png)
+
+---
+
 ## Project Structure
 
 ```
