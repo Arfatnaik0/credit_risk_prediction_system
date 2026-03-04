@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request
 import pandas as pd
 import joblib
+import os
 
 app = Flask(__name__)
 
 # Load model and feature columns
-model = joblib.load("credit_risk_model.pkl")
+model = joblib.load(os.path.join(os.path.dirname(__file__), "credit_risk_model.pkl"))
 
 # Default values for internal features
 DEFAULT_FEATURES = {

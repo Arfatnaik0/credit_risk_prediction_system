@@ -4,7 +4,7 @@
 This project implements an end-to-end **credit risk prediction system** that estimates the probability of loan default and makes approval or rejection decisions using **cost-sensitive thresholding**.  
 The emphasis is on business-aligned decision-making rather than raw accuracy.
 
-The project covers data preprocessing, leakage prevention, model training, evaluation, and deployment using Flask.
+The project covers data preprocessing, leakage prevention, model training, evaluation, and deployment using Flask inside a Docker container.
 
 ---
 
@@ -43,12 +43,11 @@ Dataset/
 └── loans_full_schema.csv
 notebook/
 └── notebook.ipynb
-├──op1.png
-├──op2.png
-├──requirements.txt
-
+├── Dockerfile
+├── op1.png
+├── op2.png
+└── requirements.txt
 ```
-
 
 ---
 
@@ -95,7 +94,6 @@ Instead of a default threshold, the decision threshold is optimized using:
 
 **Total Cost = (False Negatives × Cost_FN) + (False Positives × Cost_FP)**
 
-
 Assumptions:
 - Cost_FN = 3  
 - Cost_FP = 1  
@@ -104,22 +102,43 @@ The threshold minimizing total cost is used for final predictions.
 
 ---
 
-## Deployment
-A Flask web application:
-- Accepts key loan application inputs from the user
-- Fills internal or bureau-style features with realistic defaults
-- Outputs the probability of default and a final decision (APPROVE / REJECT)
+## Docker Setup
 
-The deployed model includes preprocessing and inference in a single pipeline.
+The application is containerized using Docker for consistent and portable deployment.
+
+**Dockerfile overview:**
+- Base image: `python:3.11-slim`
+- Installs `gcc` and `g++` for compiling any native Python dependencies
+- Exposes port `5000`
+- Installs dependencies from `requirements.txt`
+- Runs as a non-root user for security
+- Served via Gunicorn
 
 ---
 
 ## How to Run
 
+### Option 1: Run with Docker (Recommended)
+
+1. **Build the Docker image**
+   ```bash
+   docker build -t credit-risk .
+   ```
+
+2. **Run the container**
+   ```bash
+   docker run -p 5000:5000 credit-risk
+   ```
+
+3. Open `http://localhost:5000` in a browser.
+
+### Option 2: Run Locally (without Docker)
+
+```bash
 pip install -r requirements.txt
 cd app
 python app.py
-
+```
 
 Open `http://127.0.0.1:5000` in a browser.
 
